@@ -1,7 +1,7 @@
-import { operators_repo } from "../repositories/operators_repo.js";
+import { operatorsRepo } from "../repositories/operators_repo.js";
 
 async function createOperator(operator) {
-  const new_id = await operators_repo.create(operator);
+  const new_id = await operatorsRepo.create(operator);
   return new_id;
 }
 
