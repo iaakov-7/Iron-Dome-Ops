@@ -1,3 +1,3 @@
 import { createRepository } from "./base_repo.js";
 
-const operators_repo = createRepository("operators");
+export const operators_repo = createRepository("operators");
