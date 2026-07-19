@@ -5,3 +5,5 @@ import { incidentController } from "../controllers/incident_controller.js";
 export const router = express.Router();
 
 router.post("/", validCreateIncident, incidentController.createIncident);
+
+router.patch("/:id/status", incidentController.updateStatus);

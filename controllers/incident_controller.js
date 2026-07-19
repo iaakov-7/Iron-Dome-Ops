@@ -22,4 +22,17 @@ async function createIncident(req, res) {
   }
 }
 
-export const incidentController = { createIncident };
+async function updateStatus(req, res) {
+  const status = req.body.status;
+  const id = parseInt(req.params.id);
+  if (isNaN(id)) {
+    const error = new Error("Id must be a number");
+    error.statusCode = 400;
+    throw error;
+  }
+  const success = await incidentServices.updateStatus(status, id);
+  if (success) {
+    res.json({ success: true, message: `Incident ${id} updated successfully` });
+  } else throw error;
+}
+export const incidentController = { createIncident, updateStatus };

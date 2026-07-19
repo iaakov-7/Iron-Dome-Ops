@@ -37,6 +37,6 @@ CREATE TABLE IF NOT EXISTS logs(
 
 DESCRIBE operators
 
-DESCRIBE incidents
+SELECT * FROM incidents
 
 DESCRIBE logs
