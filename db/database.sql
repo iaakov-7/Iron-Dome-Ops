@@ -29,14 +29,15 @@ CREATE TABLE IF NOT EXISTS logs(
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     
     CONSTRAINT fk_logs_operators
-    FOREIGN KEY (operator_id) REFERENCES operators(id),
+    FOREIGN KEY (incident_id) REFERENCES incidents(id),
 
     CONSTRAINT fk_logs_incidents
-    FOREIGN KEY (incident_id) REFERENCES operators(id)
+    FOREIGN KEY (operator_id) REFERENCES operators(id)
 )
 
-DESCRIBE operators
+SELECT * FROM operators
 
-SELECT * FROM incidents
+SELECT * FROM logs
 
 DESCRIBE logs
+

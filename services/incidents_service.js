@@ -4,11 +4,11 @@ import { createLog } from "./logs_service.js";
 async function createIncident(incident) {
   try {
     const new_id = await incidentsRepo.create(incident);
-    createLog(
-      "Insert incident",
+    await createLog(
+      "INCIDENT_CREATED",
       new_id,
-      incident.operatorId,
-      `Create a new incident`,
+      incident.operator_id,
+      `New incident created `,
     );
     return new_id;
   } catch (err) {
@@ -23,7 +23,7 @@ async function createIncident(incident) {
 
 async function updateStatus(status, id) {
   if (
-    !["OPEN", "TRACKING", "INTRERCEPTED", "CLOSED"].includes(
+    !["OPEN", "TRACKING", "INTERCEPTED", "CLOSED"].includes(
       status.toUpperCase(),
     )
   ) {
@@ -33,11 +33,17 @@ async function updateStatus(status, id) {
     error.statusCode = 400;
     throw error;
   }
-  const existsIncident = await incidentsRepo.findById(id);
-  if (existsIncident) {
+  const incident = await incidentsRepo.findById(id);
+  if (incident) {
     const success = await incidentsRepo.update(
       { status: status.toUpperCase() },
       id,
+    );
+    await createLog(
+      "STATUS_UPDATED",
+      id,
+      incident.operator_id,
+      `Status changed to ${status.toUpperCase()}`,
     );
     return success;
   } else {

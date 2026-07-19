@@ -1,3 +1,3 @@
-import { createRepository } from "./base_repo";
+import { createRepository } from "./base_repo.js";
 
 export const logsRepo = createRepository("logs");

@@ -1,4 +1,4 @@
-import { logsRepo } from "../repositories/logs_repo";
+import { logsRepo } from "../repositories/logs_repo.js";
 
 export async function createLog(action, incidentId, operatorId, description) {
   const new_id = await logsRepo.create({
@@ -6,7 +6,6 @@ export async function createLog(action, incidentId, operatorId, description) {
     incident_id: incidentId,
     operator_id: operatorId,
     description,
-    created_at: new Date(),
   });
   return new_id;
 }
