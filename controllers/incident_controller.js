@@ -31,9 +31,7 @@ async function updateStatus(req, res) {
     throw error;
   }
   const success = await incidentServices.updateStatus(status, id);
-  if (success) {
-    res.json({ success: true, message: `Incident ${id} updated successfully` });
-  } else throw error;
+  res.json({ success: true, message: `Incident ${id} updated successfully` });
 }
 
 async function getOpenIncident(req, res) {

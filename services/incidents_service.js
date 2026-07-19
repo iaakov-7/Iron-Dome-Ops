@@ -1,8 +1,24 @@
 import { incidentsRepo } from "../repositories/incidents_repo.js";
+import { createLog } from "./logs_service.js";
 
 async function createIncident(incident) {
-  const new_id = await incidentsRepo.create(incident);
-  return new_id;
+  try {
+    const new_id = await incidentsRepo.create(incident);
+    createLog(
+      "Insert incident",
+      new_id,
+      incident.operatorId,
+      `Create a new incident`,
+    );
+    return new_id;
+  } catch (err) {
+    if (err.code === "ER_NO_REFERENCED_ROW_2" || err.errno === 1452) {
+      const error = new Error("There is no such operator ID.");
+      error.statusCode = 400;
+      throw error;
+    }
+    throw err;
+  }
 }
 
 async function updateStatus(status, id) {
