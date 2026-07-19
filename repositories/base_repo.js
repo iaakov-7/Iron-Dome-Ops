@@ -29,5 +29,19 @@ export function createRepository(tableName) {
     );
     return result[0] || null;
   }
-  return { tableName, create, update, findById };
+  async function find(filter = {}) {
+    const filterKeys = Object.keys(filter);
+    if (filterKeys.length === 0) {
+      const [result] = await pool.execute(`SELECT * FROM ${tableName}`);
+      return result;
+    }
+    const filterValues = Object.values(filter);
+    const whereClause = filterKeys.map((key) => `${key}=?`).join(" AND ");
+    const [result] = await pool.execute(
+      `SELECT * FROM ${tableName} WHERE ${whereClause}`,
+      filterValues,
+    );
+    return result;
+  }
+  return { create, update, findById, find };
 }

@@ -35,4 +35,13 @@ async function updateStatus(req, res) {
     res.json({ success: true, message: `Incident ${id} updated successfully` });
   } else throw error;
 }
-export const incidentController = { createIncident, updateStatus };
+
+async function getOpenIncident(req, res) {
+  const incidents = await incidentServices.getIncidentsByStatus("OPEN");
+  res.json({ success: true, incidents });
+}
+export const incidentController = {
+  createIncident,
+  updateStatus,
+  getOpenIncident,
+};

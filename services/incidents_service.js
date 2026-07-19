@@ -31,4 +31,12 @@ async function updateStatus(status, id) {
   }
 }
 
-export const incidentServices = { createIncident, updateStatus };
+async function getIncidentsByStatus(status) {
+  const incidents = await incidentsRepo.find({ status: status });
+  return incidents;
+}
+export const incidentServices = {
+  createIncident,
+  updateStatus,
+  getIncidentsByStatus,
+};
