@@ -38,3 +38,32 @@ The system was built in Java Script with an express server and a connection to m
     ├── logs_service.js
     └── operatoes_service.js
 ```
+
+## Endpoints
+
+- `POST` | `/operators` | create a new operator
+- `POST` | `/incidents` | create a new incident
+- `PATCH`| `/incidents/:id/status` | update incident status by id
+- `GET` | `/incidents/open` | get all open incidents
+
+## Operating and running instructions
+
+#### Starting the database(docker):
+
+=> docker-compose -up -d
+
+#### Creating the data schema:
+
+Run file => database.sql
+
+#### Env file:
+
+Prepare a file according to the .env_example
+
+#### Install dependencies:
+
+=> npm install
+
+#### How to run:
+
+=> node app.js
