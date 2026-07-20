@@ -1,4 +1,4 @@
-import { operatorServices } from "../services/operatoes_service.js";
+import { operatorServices } from "../services/operators_service.js";
 
 async function createOperator(req, res) {
   const { name, rank } = req.body;

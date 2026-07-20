@@ -17,6 +17,7 @@ The system was built in Java Script with an express server and a connection to m
 ├── db
 │   ├── database.js
 │   └── database.sql
+├── .env_exemple
 ├── .gitignore
 ├── Dockerfile
 ├── docker-compose.yaml
@@ -50,7 +51,7 @@ The system was built in Java Script with an express server and a connection to m
 
 #### Starting the database(docker):
 
-=> docker-compose -up -d
+=> docker-compose up -d
 
 #### Creating the data schema:
 
