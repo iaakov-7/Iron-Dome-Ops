@@ -37,7 +37,7 @@ The system was built in Java Script with an express server and a connection to m
 └── services
     ├── incidents_service.js
     ├── logs_service.js
-    └── operatoes_service.js
+    └── operators_service.js
 ```
 
 ## Endpoints
